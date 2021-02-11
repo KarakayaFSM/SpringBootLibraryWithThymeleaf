@@ -1,0 +1,1 @@
+@RestController should be used with @RequestMapping for correct mapping

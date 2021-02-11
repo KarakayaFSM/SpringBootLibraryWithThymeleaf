@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Authors</title>
+</head>
+<body>
+<h1>Authors</h1>
+
+<form id="createAuthorForm" action="#" th:action="@{/authors/create}" th:object="${author}" method="post">
+    <p>
+        name: <input type="text" th:field="*{name}">
+        <br>
+        explanation: <input type="text" th:field="*{explanation}">
+    </p>
+    <p>
+        <input type="submit" value="Submit" form="createAuthorForm">
+        <input type="reset" value="Reset" form="createAuthorForm">
+    </p>
+</form>
+
+<h3>Add Book to Author</h3>
+<form id="addBookToAuthorForm" action="#" th:action="@{/authors/addBook}" th:object="${abinfo}" method="post">
+    <table>
+        <tr>
+            <td>
+                <label for="authors">Authors</label>
+                <select id="authors">
+                    <option selected="selected">Select Author</option>
+                    <option th:each="au : ${authors}" th:value="${au.getName()}" th:text="${au.getName()}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="books">Books</label>
+                <select id="books">
+                    <option selected="selected">Select Book</option>
+                    <option th:each="book : ${books}" th:value="${book.getName()}" th:text="${book.getName()}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="addBookToAuthorForm" form="addBookToAuthorForm">
+                <input type="reset" value="Reset" form="addBookToAuthorForm">
+            </td>
+        </tr>
+
+
+    </table>
+</form>
+
+<p>
+<h3>Authors</h3>
+<ul>
+    <th:block th:each="author : ${authors}">
+        <li th:text="${author}"></li>
+    </th:block>
+</ul>
+</p>
+
+</body>
+</html>

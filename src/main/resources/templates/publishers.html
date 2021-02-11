@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Publishers</title>
+</head>
+<body>
+<h1>Publishers</h1>
+
+<form action="#" th:action="@{/publishers/create}" th:object="${publisher}" method="post">
+    <p>
+        name: <input type="text" th:field="*{name}">
+        <br>
+        explanation: <input type="text" th:field="*{explanation}">
+    </p>
+    <p>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </p>
+</form>
+
+<h3>Add Book to Author</h3>
+<form id="addBookToPublisherForm" action="#" th:action="@{/publishers/addBook}" th:object="${pbinfo}" method="post">
+    <table>
+        <tr>
+            <td>
+                <label for="publishers">Publishers</label>
+                <select id="publishers">
+                    <option selected="selected">Select Publisher</option>
+                    <option th:each="pb : ${publishers}" th:value="${pb.getName()}" th:text="${pb.getName()}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="books">Books</label>
+                <select id="books">
+                    <option selected="selected">Select Book</option>
+                    <option th:each="book : ${books}" th:value="${book.getName()}" th:text="${book.getName()}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="addBookToAuthorForm" form="addBookToPublisherForm">
+                <input type="reset" value="Reset" form="addBookToPublisherForm">
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+<p>
+<h3>Publishers</h3>
+<ul>
+    <th:block th:each="publisher : ${publishers}">
+        <li th:text="${publisher}"></li>
+    </th:block>
+</ul>
+</p>
+
+
+</body>
+</html>
